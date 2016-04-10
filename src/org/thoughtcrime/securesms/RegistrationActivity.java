@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -30,6 +33,11 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * The register account activity.  Prompts ths user for their registration information
  * and begins the account registration process.
@@ -51,6 +59,8 @@ public class RegistrationActivity extends BaseActionBarActivity {
 
   private MasterSecret masterSecret;
 
+  private final int REQUEST_CODE_ASK_PERMISSIONS = 1;
+
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -58,9 +68,69 @@ public class RegistrationActivity extends BaseActionBarActivity {
 
     getSupportActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_signal));
 
-    initializeResources();
-    initializeSpinner();
-    initializeNumber();
+    checkPermissions();
+
+  }
+
+  private boolean addPermission(List<String> permissionsList, String permission) {
+    if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+      permissionsList.add(permission);
+      // Check for Rationale Option
+      if (!shouldShowRequestPermissionRationale(permission))
+        return false;
+    }
+    return true;
+  }
+
+  private void checkPermissions(){
+
+    List<String> permissionsNeeded = new ArrayList<String>();
+
+    final List<String> permissionsList = new ArrayList<String>();
+
+    if (!addPermission(permissionsList, android.Manifest.permission.READ_SMS))
+      permissionsNeeded.add("GPS");
+    if (!addPermission(permissionsList, android.Manifest.permission.READ_CONTACTS))
+      permissionsNeeded.add("Read Contacts");
+    if (!addPermission(permissionsList, android.Manifest.permission.WRITE_CONTACTS))
+      permissionsNeeded.add("Write Contacts");
+
+    if (permissionsList.size() > 0) {
+      requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+              REQUEST_CODE_ASK_PERMISSIONS);
+      return;
+    }
+
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    switch (requestCode) {
+      case REQUEST_CODE_ASK_PERMISSIONS:
+          Map<String, Integer> perms = new HashMap<String, Integer>();
+          // Initial
+          perms.put(android.Manifest.permission.READ_SMS, PackageManager.PERMISSION_GRANTED);
+          perms.put(android.Manifest.permission.READ_CONTACTS, PackageManager.PERMISSION_GRANTED);
+          perms.put(android.Manifest.permission.WRITE_CONTACTS, PackageManager.PERMISSION_GRANTED);
+          // Fill with results
+          for (int i = 0; i < permissions.length; i++)
+            perms.put(permissions[i], grantResults[i]);
+          if (perms.get(android.Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED
+                  && perms.get(android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED
+                  && perms.get(android.Manifest.permission.WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            // All Permissions Granted
+            initializeResources();
+            initializeSpinner();
+            initializeNumber();
+          } else {
+            // Permission Denied
+            Toast.makeText(this, "Some Permission is Denied", Toast.LENGTH_SHORT)
+                    .show();
+        }
+        break;
+      default:
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
   }
 
   @Override
