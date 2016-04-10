@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.io.IOException;
 
@@ -90,32 +91,26 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
     mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
     mediaPlayer.setOnCompletionListener(this);
     mediaPlayer.setOnPreparedListener(this);
+    mediaPlayer.setLooping(loopEnabled);
 
     String packageName = context.getPackageName();
     Uri dataUri = Uri.parse("android.resource://" + packageName + "/" + currentSoundID);
 
     try {
       mediaPlayer.setDataSource(context, dataUri);
+      mediaPlayer.prepareAsync();
     } catch (IllegalArgumentException | SecurityException | IllegalStateException | IOException e) {
       Log.w(TAG, e);
       // TODO Auto-generated catch block
       return;
     }
-    try {
-      mediaPlayer.prepareAsync();
-    } catch (IllegalStateException e) {
-      // TODO Auto-generated catch block
-      Log.w(TAG, e);
-      return;
-    }
   }
 
   public void stop() {
-    if( mediaPlayer == null ) return;
-    try {
-      mediaPlayer.stop();
-    } catch( IllegalStateException e ) {
-    }
+    if (mediaPlayer == null) return;
+    mediaPlayer.release();
+    mediaPlayer = null;
+
     currentSoundID = -1;
   }
 
@@ -131,19 +126,21 @@ public class OutgoingRinger implements MediaPlayer.OnCompletionListener, MediaPl
   }
 
   public void onPrepared(MediaPlayer mp) {
-    mediaPlayer.setLooping(loopEnabled);
-
-    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager am = ServiceUtil.getAudioManager(context);
 
     if (am.isBluetoothScoAvailableOffCall()) {
+      Log.d(TAG, "bluetooth sco is available");
       try {
         am.startBluetoothSco();
-        am.setBluetoothScoOn(true);
       } catch (NullPointerException e) {
         // Lollipop bug (https://stackoverflow.com/questions/26642218/audiomanager-startbluetoothsco-crashes-on-android-lollipop)
       }
     }
 
-    mediaPlayer.start();
+    try {
+      mp.start();
+    } catch (IllegalStateException e) {
+      Log.w(TAG, e);
+    }
   }
 }

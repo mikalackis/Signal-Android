@@ -18,13 +18,21 @@
 package org.thoughtcrime.redphone.ui;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
@@ -34,14 +42,16 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  *
  */
 
-public class CallCard extends LinearLayout {
+public class CallCard extends LinearLayout implements Recipient.RecipientModifiedListener {
 
   private ImageView photo;
-  private TextView name;
-  private TextView phoneNumber;
-  private TextView label;
-  private TextView elapsedTime;
-  private TextView status;
+  private TextView  name;
+  private TextView  phoneNumber;
+  private TextView  label;
+  private TextView  elapsedTime;
+  private TextView  status;
+
+  private Recipient recipient;
 
   public CallCard(Context context) {
     super(context);
@@ -56,14 +66,36 @@ public class CallCard extends LinearLayout {
   public void reset() {
     setPersonInfo(Recipient.getUnknownRecipient());
     this.status.setText("");
+    this.recipient = null;
   }
 
   public void setElapsedTime(String time) {
     this.elapsedTime.setText(time);
   }
 
-  private void setPersonInfo(Recipient recipient) {
-    this.photo.setImageDrawable(recipient.getContactPhoto().asCallCard(getContext()));
+  private void setPersonInfo(final @NonNull Recipient recipient) {
+    this.recipient = recipient;
+    this.recipient.addListener(this);
+
+    final Context context = getContext();
+
+    new AsyncTask<Void, Void, ContactPhoto>() {
+      @Override
+      protected ContactPhoto doInBackground(Void... params) {
+        DisplayMetrics metrics       = new DisplayMetrics();
+        WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Uri            contentUri    = ContactsContract.Contacts.lookupContact(context.getContentResolver(),
+                                                                               recipient.getContactUri());
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        return ContactPhotoFactory.getContactPhoto(context, contentUri, null, metrics.widthPixels);
+      }
+
+      @Override
+      protected void onPostExecute(final ContactPhoto contactPhoto) {
+        CallCard.this.photo.setImageDrawable(contactPhoto.asCallCard(context));
+      }
+    }.execute();
+
     this.name.setText(recipient.getName());
     this.phoneNumber.setText(recipient.getNumber());
   }
@@ -86,4 +118,10 @@ public class CallCard extends LinearLayout {
     this.status      = (TextView)findViewById(R.id.callStateLabel);
   }
 
+  @Override
+  public void onModified(Recipient recipient) {
+    if (recipient == this.recipient) {
+      setPersonInfo(recipient);
+    }
+  }
 }

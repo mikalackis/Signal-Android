@@ -30,6 +30,7 @@ import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.redphone.audio.IncomingRinger;
 import org.thoughtcrime.redphone.audio.OutgoingRinger;
@@ -228,7 +229,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
       return;
     }
 
-    handleMissedCall(intent.getStringExtra(EXTRA_REMOTE_NUMBER));
+    handleMissedCall(intent.getStringExtra(EXTRA_REMOTE_NUMBER), false);
 
     try {
       SignalingSocket signalingSocket = new SignalingSocket(this, session.getFullServerName(),
@@ -243,9 +244,10 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     }
   }
 
-  private void handleMissedCall(String remoteNumber) {
-    DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
-    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this));
+  private void handleMissedCall(String remoteNumber, boolean signal) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remoteNumber);
+    MessageNotifier.updateNotification(this, KeyCachingService.getMasterSecret(this),
+                                       false, messageAndThreadId.second, signal);
   }
 
   private void handleAnswerCall(Intent intent) {
@@ -293,14 +295,18 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
     AudioManager audioManager = ServiceUtil.getAudioManager(this);
     AudioUtils.resetConfiguration(this);
 
+    Log.d(TAG, "request STREAM_VOICE_CALL transient audio focus");
     audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL,
                                    AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
   }
 
   private void shutdownAudio() {
-    AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+    Log.d(TAG, "reset audio mode and abandon focus");
+    AudioUtils.resetConfiguration(this);
+    AudioManager am = ServiceUtil.getAudioManager(this);
     am.setMode(AudioManager.MODE_NORMAL);
     am.abandonAudioFocus(null);
+    am.stopBluetoothSco();
   }
 
   public int getState() {
@@ -377,7 +383,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallStale() {
     Log.w(TAG, "Got a stale call, probably an old SMS...");
-    handleMissedCall(remoteNumber);
+    handleMissedCall(remoteNumber, true);
     this.terminate();
   }
 
@@ -427,7 +433,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyCallDisconnected() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, false);
 
     sendMessage(Type.CALL_DISCONNECTED, getRecipient(), null);
     this.terminate();
@@ -454,7 +460,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyServerFailure() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, true);
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();
@@ -464,7 +470,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyClientFailure() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, false);
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();
@@ -474,7 +480,7 @@ public class RedPhoneService extends Service implements CallStateListener, CallS
 
   public void notifyLoginFailed() {
     if (state == STATE_RINGING)
-      handleMissedCall(remoteNumber);
+      handleMissedCall(remoteNumber, true);
 
     state = STATE_IDLE;
     outgoingRinger.playFailure();

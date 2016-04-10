@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="177"
-      android:versionName="3.7.2">
+      android:versionCode="193"
+      android:versionName="3.15.2">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat"/>
 
@@ -92,9 +92,14 @@
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
+                 android:supportsRtl="true"
                  tools:replace="android:allowBackup"
                  android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme">
+
+    <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"/>
 
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
@@ -103,6 +108,7 @@
                android:value="GlideModule" />
 
     <activity android:name="org.thoughtcrime.redphone.RedPhone"
+              android:excludeFromRecents="true"
               android:screenOrientation="portrait"
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
               android:launchMode="singleTask">
@@ -192,7 +198,12 @@
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:parentActivityName=".ConversationListActivity">
+        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+    </activity>
 
     <activity android:name=".ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"
@@ -277,7 +288,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".DeviceActivity"
-               android:label="@string/AndroidManifest_manage_linked_devices"
+               android:label="@string/AndroidManifest__linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".LogSubmitActivity"
@@ -329,6 +340,7 @@
     </activity>
 
     <activity android:name="org.thoughtcrime.redphone.RedPhoneShare"
+              android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
@@ -436,7 +448,7 @@
 
     <receiver android:name=".notifications.WearReplyReceiver"
               android:enabled="true"
-              android:exported="true">
+              android:exported="false">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY"/>
         </intent-filter>
@@ -444,10 +456,12 @@
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
+              android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
+              android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 
     <receiver android:name=".service.RegistrationNotifier"

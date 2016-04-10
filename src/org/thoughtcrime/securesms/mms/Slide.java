@@ -28,9 +28,7 @@ import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-
-import java.io.IOException;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public abstract class Slide {
 
@@ -57,6 +55,11 @@ public abstract class Slide {
     return attachment.getThumbnailUri();
   }
 
+  @NonNull
+  public Optional<String> getBody() {
+    return Optional.absent();
+  }
+
   public boolean hasImage() {
     return false;
   }
@@ -66,6 +69,10 @@ public abstract class Slide {
   }
 
   public boolean hasAudio() {
+    return false;
+  }
+
+  public boolean hasLocation() {
     return false;
   }
 
@@ -100,7 +107,6 @@ public abstract class Slide {
                                                          @NonNull Uri     uri,
                                                          @NonNull String  defaultMime,
                                                                   long     size)
-    throws IOException
   {
     Optional<String> resolvedType = Optional.fromNullable(MediaUtil.getMimeType(context, uri));
     return new UriAttachment(uri, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size);

@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Цяпер: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы яшчэ не ўсталявалі пароль</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s паведамленняў у гутарцы</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Выдаліць усе старыя паведамленні зараз?</string>
   <string name="ApplicationPreferencesActivity_delete">Выдаліць</string>
   <string name="ApplicationPreferencesActivity_disable">Выключыць</string>
@@ -21,7 +20,6 @@
   <string name="ApplicationPreferencesActivity_Off">Выкл</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d хвілін</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(малюнак)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(аўдыё)</string>
@@ -44,9 +42,7 @@
   <string name="ConversationItem_expires_s">Заканчваецца: %s</string>
   <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
   <string name="ConversationItem_view_secure_media_question">Паказаць бяспечнае медыя?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Гэты кантэнт быў захаваны ў зашыфраванай базе дадзеных. На жаль, для яго прагляду ў знешняй праграме спатрэбіцца часова расшыфраваць дадзеныя і запісаць іх на дыск. Вы ўпэўненыя, што хочаце гэта зрабіць?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Памылка, атрымана неактуальнае паведамленне абмену ключамі.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Паведамленне абмену ключамі атрымана, дакраніцеся, каб працягнуць.</string>
   <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
   <string name="ConversationItem_click_for_details">Націсніце каб пабачыць дэталі</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Націсніце для небяспечнага паўтора</string>
@@ -65,8 +61,6 @@
   <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
   <string name="ConversationActivity_unnamed_group">Неназваная група</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d удзельнікаў</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 ўдзельнік</string>
   <string name="ConversationActivity_saved_draft">Захаваны чарнавік</string>
   <string name="ConversationActivity_invalid_recipient">Няправільны атрымальнік!</string>
   <string name="ConversationActivity_calls_not_supported">Званкі не падтрымліваюцца</string>
@@ -83,11 +77,7 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Адпраўшчык: %1$s\nТранспарт: %2$s\nДаслана: %3$s\nАтрымана: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Захаваць на дыск?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Памылка пры захаванні дадатку на дыск!</string>
-  <string name="ConversationFragment_success_exclamation">Паспяхова!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Немагчыма запісаць на дыск!</string>
-  <string name="ConversationFragment_saving_attachment">Захаванне дадатку</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Захаванне дадатку на дыск...</string>
   <string name="ConversationFragment_pending">У працэсе...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -113,7 +103,6 @@
   <string name="ExportFragment_export">Экспарт</string>
   <string name="ExportFragment_cancel">Адмена</string>
   <string name="ExportFragment_exporting">Экспарт</string>
-  <string name="ExportFragment_success">Паспяхова!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Новая група</string>
@@ -230,8 +219,6 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Атрыманы ключ абмену паведамленнямі для няправільнай версіі пратакола.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Атрыманае паведамленне з невядомым ідэнтыфікацыйным ключом. Націсніце працягнуць.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Атрыманая інфармацыя абноўленая, але мае невядомую інфармацыю індэнтыфікацыі. Націсніце каб валідзіраваць ідэнтыфікацыю.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат паведамлення.</string>
   <!--ThreadRecord-->
@@ -241,7 +228,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас няма індэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Атрымальнік ня мае ідэнтыфікацыйнага ключа.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Атрымальнік ня мае ідэнтыфікацыйнага ключа!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Адскануйце гэты ключ, каб параўнаць</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">УВАГА, адсканаваныя ключы не супадаюць! Калі ласка ўважліва праверце адбіткі.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ верыфікавана!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Іх ключ правільны. Таксама не забудзься верыфікаваць свой ключ з імі.</string>
@@ -249,8 +235,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У Вас няма ідэнтыфікацыйнага ключа!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У Вас няма ідэнтыфікацыйнага ключа.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Адскануйце каб параўнаць</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Скануюцца для параўнання</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">УВАГА, адсканаваны ключ не супадае!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">Не верыфікавана!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Адсканаваныя ключ супадае!</string>
@@ -343,7 +327,6 @@
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Не атрымалася ўзяць логі з вашай прылады. Вы па-ранейшаму можаце выкарыстоўваць ADB, каб атрымаць логі замест гэтага.</string>
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
   <string name="log_submit_activity__submitting">Падпіска</string>
   <string name="log_submit_activity__posting_logs">Публікацыя логаў у gist...</string>
@@ -376,7 +359,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Разблакіраваць</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
   <!--- redphone_call_controls-->
@@ -434,7 +416,6 @@
   <string name="AndroidManifest__public_identity_key">Публічны ідэнтыфікацыйны ключ</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
   <string name="AndroidManifest__verify_identity">Праверыць ідэнтыфікатар</string>
-  <string name="AndroidManifest__log_submit">Даслаць логі</string>
   <string name="AndroidManifest__media_overview">Усе выявы</string>
   <string name="AndroidManifest__media_overview_named">Усе выявы з %1$s</string>
   <!--arrays.xml-->
@@ -463,15 +444,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
-  <string name="preferences__passphrase_summary">Пароль %s</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
-  <string name="preferences__screen_security_summary">Бяспека экрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блакіраваць магчымасць рабіць скрыншоты ўнутры праграмы</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Выдаляць пароль з памяці праз пэўны інтэрвал часу</string>
-  <string name="preferences__timeout_passphrase">Час запамінання пароля</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Абярыце час запамінання пароля</string>
-  <string name="preferences__pref_timeout_interval_title">Інтэрвал часу запамінання</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Значэнне часу, праз які пароль будзе выдалены з памяці</string>
   <string name="preferences__notifications">Апавяшчэнні</string>
   <string name="preferences__led_color">колер святлодыёда</string>
   <string name="preferences__led_color_unknown">Невядома</string>
@@ -523,10 +497,8 @@
   <string name="preferences__dark_theme">Цёмны</string>
   <string name="preferences__appearance">З\'яўленне</string>
   <string name="preferences__theme">Тэма</string>
-  <string name="preferences__theme_summary">Тэма %s</string>
   <string name="preferences__default">Па-змоўчані</string>
   <string name="preferences__language">Мова</string>
-  <string name="preferences__language_summary">Мова %s</string>
   <string name="preferences__submit_debug_log">Выслаць debug log</string>
   <string name="preferences__support_wifi_calling">Рэжым сумяшчальнасці \'WiFi выклік\' </string>
   <!--****************************************-->
@@ -586,8 +558,6 @@
   <string name="conversation_group_options__broadcast">Трансляцыя</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Параўнаць</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Скануюцца для параўнання</string>
-  <string name="key_scanning__menu_scan_to_compare">Адскануйце каб параўнаць</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Новае паведамленне</string>
   <string name="text_secure_normal__menu_new_group">Новая група</string>
@@ -595,14 +565,13 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заблакіраваць</string>
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build_details">Паведамленні больш ня будуць высылацца. Калі ласка абнавіцеся да больш новай версіі.</string>
-  <string name="reminder_header_sms_import_text">Націсніце каб скапіраваць вашыя SMS з тэлефона ў зашыфраваную базу.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_cant_display">Не атрымліваецца папярэдне праглядзець выяву</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Захаваць</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->

@@ -43,10 +43,10 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 
@@ -74,7 +74,8 @@ public class MessageSender {
       allocatedThreadId = threadId;
     }
 
-    long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId, message, forceSms, System.currentTimeMillis());
+    long messageId = database.insertMessageOutbox(new MasterSecretUnion(masterSecret), allocatedThreadId,
+                                                  message, forceSms, System.currentTimeMillis());
 
     sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
 
@@ -254,25 +255,19 @@ public class MessageSender {
   }
 
   private static boolean isSelfSend(Context context, Recipients recipients) {
-    try {
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        return false;
-      }
-
-      if (!recipients.isSingleRecipient()) {
-        return false;
-      }
-
-      if (recipients.isGroupRecipient()) {
-        return false;
-      }
-
-      String e164number = Util.canonicalizeNumber(context, recipients.getPrimaryRecipient().getNumber());
-      return TextSecurePreferences.getLocalNumber(context).equals(e164number);
-    } catch (InvalidNumberException e) {
-      Log.w("MessageSender", e);
+    if (!TextSecurePreferences.isPushRegistered(context)) {
       return false;
     }
+
+    if (!recipients.isSingleRecipient()) {
+      return false;
+    }
+
+    if (recipients.isGroupRecipient()) {
+      return false;
+    }
+
+    return Util.isOwnNumber(context, recipients.getPrimaryRecipient().getNumber());
   }
 
   private static boolean isPushDestination(Context context, String destination) {
@@ -282,7 +277,7 @@ public class MessageSender {
       return directory.isSecureTextSupported(destination);
     } catch (NotInDirectoryException e) {
       try {
-        TextSecureAccountManager      accountManager = TextSecureCommunicationFactory.createManager(context);
+        SignalServiceAccountManager   accountManager = TextSecureCommunicationFactory.createManager(context);
         Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination);
 
         if (!registeredUser.isPresent()) {

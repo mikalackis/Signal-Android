@@ -42,8 +42,8 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -182,6 +182,16 @@ public class Util {
   {
     if (GroupUtil.isEncodedGroup(number)) return number;
     else                                  return canonicalizeNumber(context, number);
+  }
+
+  public static boolean isOwnNumber(Context context, String number) {
+    try {
+      String e164number = canonicalizeNumber(context, number);
+      return TextSecurePreferences.getLocalNumber(context).equals(e164number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+    }
+    return false;
   }
 
   public static byte[] readFully(InputStream in) throws IOException {

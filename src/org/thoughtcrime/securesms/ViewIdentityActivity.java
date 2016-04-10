@@ -21,7 +21,8 @@ import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.libaxolotl.IdentityKey;
+import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.libsignal.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
 /**
@@ -54,7 +55,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
     if (identityKey == null) {
       identityFingerprint.setText(R.string.ViewIdentityActivity_you_do_not_have_an_identity_key);
     } else {
-      identityFingerprint.setText(identityKey.getFingerprint());
+      identityFingerprint.setText(Hex.toString(identityKey.serialize()));
     }
   }
 
@@ -76,12 +77,12 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.ViewIdentityActivity_scan_to_compare);
+    return getString(R.string.ViewIdentityActivity_scan_contacts_qr_code);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.ViewIdentityActivity_get_scanned_to_compare);
+    return getString(R.string.ViewIdentityActivity_display_your_qr_code);
   }
 
   @Override

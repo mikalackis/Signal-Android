@@ -20,9 +20,7 @@
     </plurals>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_disable_lock_screen">
-        Disable lock screen for messages?
-    </string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
     <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls...</string>
@@ -38,6 +36,8 @@
     <string name="ApplicationPreferencesActivity_off">off</string>
     <string name="ApplicationPreferencesActivity_Off">Off</string>
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+    <string name="ApplicationPreferencesActivity_privacy_summary">Passphrase %1$s, Screen security %2$s</string>
+    <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -49,6 +49,7 @@
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_location_snippet">(location)</string>
 
     <!-- AttchmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
@@ -89,9 +90,9 @@
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_not_delivered">Not delivered</string>
     <string name="ConversationItem_view_secure_media_question">View secure media?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
+    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to storage. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
-    <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_for_details">Tap for details</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
@@ -99,6 +100,8 @@
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a Signal user.\n\nSend unsecured message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
+    <string name="ConversationItem_from_s">from %s</string>
+    <string name="ConversationItem_to_s">to %s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
@@ -158,12 +161,25 @@
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
-    <string name="ConversationFragment_saving_this_media_to_storage_warning">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</string>
-    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
-    <string name="ConversationFragment_success_exclamation">Success!</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
+        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Error while saving attachment to storage!</item>
+        <item quantity="other">Error while saving attachments to storage!</item>
+    </plurals>
+    <string name="ConversationFragment_file_saved_successfully">File saved successfully.</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
-    <string name="ConversationFragment_saving_attachment">Saving attachment</string>
-    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Saving attachment</item>
+        <item quantity="other">Saving %1$d attachments</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Saving attachment to storage...</item>
+        <item quantity="other">Saving %1$d attachments to storage...</item>
+    </plurals>
+    <string name="ConversationFragment_collecting_attahments">Collecting attachments...</string>
     <string name="ConversationFragment_pending">Pending...</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
@@ -185,11 +201,15 @@
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations...</string>
-    <string name="ConversationListFragment_conversations_archived">Conversations archived</string>
+    <plurals name="ConversationListFragment_conversations_archived">
+        <item quantity="one">Conversation archived</item>
+        <item quantity="other">%d conversations archived</item>
+    </plurals>
     <string name="ConversationListFragment_undo">UNDO</string>
-    <string name="ConversationListFragment_moved_conversation_to_inbox">Moved conversation to inbox</string>
-    <string name="ConversationListFragment_conversation_archived">Conversation archived</string>
-    <string name="ConversationListFragment_moved_conversations_to_inbox">Moved conversations to inbox</string>
+    <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+        <item quantity="one">Moved conversation to inbox</item>
+        <item quantity="other">Moved %d conversations to inbox</item>
+    </plurals>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
@@ -239,7 +259,7 @@
     <string name="ExportFragment_exporting_plaintext_to_storage">Exporting plaintext to storage...</string>
     <string name="ExportFragment_error_unable_to_write_to_storage">Error, unable to write to storage.</string>
     <string name="ExportFragment_error_while_writing_to_storage">Error while writing to storage.</string>
-    <string name="ExportFragment_success">Success!</string>
+    <string name="ExportFragment_export_successful">Export successful.</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
@@ -436,7 +456,7 @@
     <string name="RedPhone_got_it">Got it</string>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_connect_with_signal">Connect With Signal</string>
+    <string name="RegistrationActivity_connect_with_signal">Connect with Signal</string>
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
         country code
@@ -503,9 +523,7 @@
     <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Received key exchange message for invalid protocol version.
     </string>
-    <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-        Received message with unknown identity key. Click to process and display.
-    </string>
+    <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process">Received message with unknown identity key. Tap to process and display.</string>
     <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Received updated but unknown identity information. Tap to validate identity.</string>
     <string name="SmsMessageRecord_secure_session_reset">Secure session reset.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
@@ -524,8 +542,8 @@
     <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Recipient has no identity key.</string>
     <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Recipient has no identity key!</string>
-    <string name="VerifyIdentityActivity_scan_their_key_to_compare">Scan their key to compare</string>
-    <string name="VerifyIdentityActivity_get_your_key_scanned">Get your key scanned</string>
+    <string name="VerifyIdentityActivity_scan_contacts_qr_code">Scan contact\'s QR code</string>
+    <string name="VerifyIdentityActivity_display_your_qr_code">Display your QR code</string>
     <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">WARNING, the scanned key DOES NOT match! Please check the fingerprint text carefully.</string>
     <string name="VerifyIdentityActivity_not_verified_exclamation">NOT Verified!</string>
     <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Their key is correct. It is also necessary to verify your key with them as well.</string>
@@ -534,8 +552,8 @@
 
     <!-- ViewIdentityActivity -->
     <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">You do not have an identity key.</string>
-    <string name="ViewIdentityActivity_scan_to_compare">Scan to compare</string>
-    <string name="ViewIdentityActivity_get_scanned_to_compare">Get scanned to compare</string>
+    <string name="ViewIdentityActivity_scan_contacts_qr_code">Scan contact\'s QR code</string>
+    <string name="ViewIdentityActivity_display_your_qr_code">Display your QR code</string>
     <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">WARNING, the scanned key DOES NOT match!</string>
     <string name="ViewIdentityActivity_not_verified_exclamation">NOT verified!</string>
     <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">The scanned key matches!</string>
@@ -576,6 +594,8 @@
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
+    <string name="ApplicationMigrationService_import_complete">Import complete</string>
+    <string name="ApplicationMigrationService_system_database_import_is_complete">System database import is complete.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
@@ -611,6 +631,7 @@
     <string name="attachment_type_selector__video">Video</string>
     <string name="attachment_type_selector__contact">Contact</string>
     <string name="attachment_type_selector__camera">Camera</string>
+    <string name="attachment_type_selector__location">Location</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>
@@ -643,6 +664,7 @@
     <string name="conversation_activity__type_message_push">Send Signal message</string>
     <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
+    <string name="conversation_activity__from_sim_name">From %1$s</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
     <string name="conversation_activity__window_description">Conversation with %1$s</string>
@@ -694,7 +716,7 @@
     <string name="experience_upgrade_activity__continue">continue</string>
 
     <!-- log_submit_activity -->
-    <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
+    <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
     <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
@@ -750,7 +772,7 @@
 
     <!-- prompt_mms_activity -->
     <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">To send media and group messages, tap \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__blocked">BLOCKED</string>
@@ -880,12 +902,12 @@
     <string name="AndroidManifest__public_identity_key">Public identity key</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_identity">Verify identity</string>
-    <string name="AndroidManifest__log_submit">Submit debug logs</string>
+    <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message details</string>
-    <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
+    <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
     <string name="AndroidManifest_archived_conversations">Archived conversations</string>
 
@@ -937,18 +959,16 @@
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_your_passphrase">Change your passphrase</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
-    <string name="preferences__passphrase_summary">Passphrase %s</string>
-    <string name="preferences__enable_lock_screen_for_messages">Enable lock screen for messages</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock Signal and message notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__screen_security_summary">Screen security %s</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
-    <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
-    <string name="preferences__timeout_passphrase">Timeout passphrase</string>
-    <string name="preferences__pref_timeout_interval_dialogtitle">Select passphrase timeout</string>
-    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
-    <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
+    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
+    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__enable_message_notifications">Enable message notifications</string>
+    <string name="preferences__new_contacts_notifications">New contacts notifications</string>
+    <string name="preferences__show_a_notification_for_new_signal_contacts">Show a notification for new Signal contacts</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
@@ -1003,15 +1023,13 @@
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_conversations_now">Trim all conversations now</string>
     <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce conversation length limits</string>
-    <string name="preferences__devices">Devices</string>
+    <string name="preferences__linked_devices">Linked devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
-    <string name="preferences__theme_summary">Theme %s</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
-    <string name="preferences__language_summary">Language %s</string>
     <string name="preferences__signal_messages_and_calls">Signal messages and calls</string>
     <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
@@ -1116,8 +1134,8 @@
 
     <!-- key_scanning -->
     <string name="key_scanning__menu_compare">Compare</string>
-    <string name="key_scanning__menu_get_scanned_to_compare">Get scanned to compare</string>
-    <string name="key_scanning__menu_scan_to_compare">Scan to compare</string>
+    <string name="key_scanning__menu_display_your_qr_code">Display your QR code</string>
+    <string name="key_scanning__menu_scan_contacts_qr_code">Scan contact\'s QR code</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_message">New message</string>
@@ -1142,7 +1160,7 @@
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_default_button">SET</string>
     <string name="reminder_header_sms_import_title">Import system SMS</string>
-    <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
+    <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into Signal\'s encrypted database.</string>
     <string name="reminder_header_sms_import_button">IMPORT</string>
     <string name="reminder_header_push_title">Enable Signal messages and calls</string>
     <string name="reminder_header_push_text">Upgrade your communication experience.</string>
@@ -1162,6 +1180,9 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
+
+    <!-- media_overview -->
+    <string name="media_overview__save_all">Save all</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image preview</string>

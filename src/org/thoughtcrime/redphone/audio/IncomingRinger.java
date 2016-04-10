@@ -17,7 +17,6 @@
 
 package org.thoughtcrime.redphone.audio;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
@@ -57,7 +56,6 @@ public class IncomingRinger {
   public IncomingRinger(Context context) {
     this.context = context.getApplicationContext();
     vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-    player = createPlayer();
   }
 
   private MediaPlayer createPlayer() {
@@ -78,10 +76,8 @@ public class IncomingRinger {
   public void start() {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
-    if(player == null) {
-      //retry player creation to pick up changed ringtones or audio server restarts
-      player = createPlayer();
-    }
+    if (player != null) player.release();
+    player = createPlayer();
 
     int ringerMode = audioManager.getRingerMode();
 
@@ -91,6 +87,7 @@ public class IncomingRinger {
     }
 
     if (player != null && ringerMode == AudioManager.RINGER_MODE_NORMAL ) {
+      Log.d(TAG, "set MODE_RINGTONE audio mode");
       audioManager.setMode(AudioManager.MODE_RINGTONE);
       try {
         if(!player.isPlaying()) {
@@ -112,11 +109,13 @@ public class IncomingRinger {
   public void stop() {
     if (player != null) {
       Log.d(TAG, "Stopping ringer");
-      player.stop();
+      player.release();
+      player = null;
     }
     Log.d(TAG, "Cancelling vibrator");
     vibrator.cancel();
 
+    Log.d(TAG, "reset audio mode");
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     audioManager.setMode(AudioManager.MODE_NORMAL);
   }
@@ -134,7 +133,7 @@ public class IncomingRinger {
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   private boolean shouldVibrateNew(Context context) {
-    AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
     Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
     if (vibrator == null || !vibrator.hasVibrator()) {
@@ -151,7 +150,7 @@ public class IncomingRinger {
   }
 
   private boolean shouldVibrateOld(Context context) {
-    AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    AudioManager audioManager = ServiceUtil.getAudioManager(context);
     return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
   }
 }

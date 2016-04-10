@@ -63,15 +63,19 @@ import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
-import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -201,10 +205,13 @@ public class ConversationListFragment extends Fragment
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
     final boolean   archive               = this.archive;
 
-    String snackBarTitle;
+    int snackBarTitleId;
 
-    if (archive) snackBarTitle = getString(R.string.ConversationListFragment_moved_conversations_to_inbox);
-    else         snackBarTitle = getString(R.string.ConversationListFragment_conversations_archived);
+    if (archive) snackBarTitleId = R.plurals.ConversationListFragment_moved_conversations_to_inbox;
+    else         snackBarTitleId = R.plurals.ConversationListFragment_conversations_archived;
+
+    int count            = selectedConversations.size();
+    String snackBarTitle = getResources().getQuantityString(snackBarTitleId, count, count);
 
     new SnackbarAsyncTask<Void>(getView(), snackBarTitle,
                                 getString(R.string.ConversationListFragment_undo),
@@ -438,7 +445,7 @@ public class ConversationListFragment extends Fragment
 
       if (archive) {
         new SnackbarAsyncTask<Long>(getView(),
-                                    getString(R.string.ConversationListFragment_moved_conversation_to_inbox),
+                                    getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
                                     Snackbar.LENGTH_LONG, false)
@@ -455,7 +462,7 @@ public class ConversationListFragment extends Fragment
         }.execute(threadId);
       } else {
         new SnackbarAsyncTask<Long>(getView(),
-                                    getString(R.string.ConversationListFragment_conversation_archived),
+                                    getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
                                     getResources().getColor(R.color.amber_500),
                                     Snackbar.LENGTH_LONG, false)
@@ -465,8 +472,14 @@ public class ConversationListFragment extends Fragment
             DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
 
             if (!read) {
-              DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
+              List<SyncMessageId> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId);
               MessageNotifier.updateNotification(getActivity(), masterSecret);
+
+              if (!messageIds.isEmpty()) {
+                ApplicationContext.getInstance(getActivity())
+                                  .getJobManager()
+                                  .add(new MultiDeviceReadUpdateJob(getActivity(), messageIds));
+              }
             }
           }
 

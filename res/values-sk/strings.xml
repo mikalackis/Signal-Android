@@ -8,7 +8,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s správ na rozhovor</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
@@ -23,7 +22,6 @@
   <string name="ApplicationPreferencesActivity_Off">Vypnuté</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d min</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(obrázok)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
@@ -52,9 +50,7 @@ identitu tohto kontaktu.
   <string name="ConversationItem_expires_s">Expirácia: %s</string>
   <string name="ConversationItem_error_not_delivered">Nedoručené</string>
   <string name="ConversationItem_view_secure_media_question">Zobraziť zašifrované média?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tento súbor bol uložený v zašifrovanej databáze. Bohužiaľ, pre otvorenie tohto súboru externým programom musí byť súbor dočasne zapísaný na disk v dešifrovanej podobe. Ste si naozaj istý, že si prajete pokračovať?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba, bola prijatá správa zaseknutej výmeny kľúčov.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Prijal som správu vzájomnej výmeny kľúčov, kliknite pre spracovanie.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
   <string name="ConversationItem_click_for_details">Dotykom sem zobrazíte detaily.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dotykom sem povolíte nezabezpečenú alternatívu.</string>
@@ -74,8 +70,6 @@ identitu tohto kontaktu.
   <string name="ConversationActivity_group_members">Členovia skupiny</string>
   <string name="ConversationActivity_group_conversation">Skupinová konverzácia</string>
   <string name="ConversationActivity_unnamed_group">Nepomenovaná skupina</string>
-  <string name="ConversationActivity_d_recipients_in_group">%d členovia</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 člen</string>
   <string name="ConversationActivity_saved_draft">Uložený koncept</string>
   <string name="ConversationActivity_invalid_recipient">Neplatný príjemca</string>
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
@@ -98,11 +92,7 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_transport_s_sent_received_s">Prenos: %1$s\nodoslané/prijaté: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ: %1$s\nPrenos: %2$s\nOdoslané: %3$s\nPrijaté: %4$s</string>
   <string name="ConversationFragment_save_to_sd_card">Vytvoriť súbor?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</string>
-  <string name="ConversationFragment_success_exclamation">Operácia úspešne dokončená!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
-  <string name="ConversationFragment_saving_attachment">Ukladám prílohu</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Ukladám prílohu na dátove úložisko zariadenia...</string>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -131,7 +121,6 @@ identitu tohto kontaktu.
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Export</string>
-  <string name="ExportFragment_success">Úspech!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
@@ -270,8 +259,6 @@ vzájomnej výmeny kľúčov.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu.
 </string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Bola prijatá aktualizované, ale neznáme identifikačné údaje. Dotykom potvrdíte idenitu.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
   <!--ThreadRecord-->
@@ -281,7 +268,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Príjemca nemá kľúč totožnosti.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Príjemca nemá kľúč totožnosti!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Pre porovnanie scannuj ich kľúč</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">POZOR, scannovaný kľúč sa NEZHODUJE! Dôsledne skontrolujte text odtlačku.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NIE JE verifikované!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich kľúč je v poriadku. Je tiež potrebné dať druhej strane verifikovať váš kľúč.</string>
@@ -289,8 +275,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte kľúč totožnosti!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Zoscannuj pre porovnanie</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Daj scannovať na porovnanie</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">POZOR, scannovaný kľúč sa NEZHODUJE!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NIE JE overené!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Scannovaný kľúč sa zhoduje!</string>
@@ -385,7 +369,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--device_list_fragment-->
   <!--experience_upgrade_activity-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Nepodarilo sa získať logy z Vašeho zariadenia. Stále môžete použiť ADB na stiahnutie ladiacich logov.</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
   <string name="log_submit_activity__posting_logs">Posielanie logov do gist...</string>
@@ -418,7 +401,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pre odosielanie multimédií a skupinových správ vyberte \'OK\' a preveďte potrebné nastavenia. Nastavenia MMS pre Vášho operátora sa väčšinou dajú nájsť zadaním \'Váš operátor APN\' do vyhľadávača na internete. Toto nastavenie je potrebné dokončiť iba prvykrát.</string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
   <!--- redphone_call_controls-->
@@ -488,7 +470,6 @@ zlyhalo.
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
-  <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <string name="AndroidManifest__media_overview">Všetky obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všetky obrázky s %1$s</string>
   <!--arrays.xml-->
@@ -516,15 +497,8 @@ zlyhalo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
   <string name="preferences__enable_passphrase">Použiť heslo</string>
-  <string name="preferences__passphrase_summary">Heslo %s</string>
   <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
-  <string name="preferences__screen_security_summary">Zabezpečenie obrazovky %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zakázať vytváranie snímkov obrazovky vnútri aplikácie a v zozname bežiacích aplikácií</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po určitom čase vymazať heslo z pamäte</string>
-  <string name="preferences__timeout_passphrase">Doba platnosti hesla</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Vyber dobu platnosti hesla</string>
-  <string name="preferences__pref_timeout_interval_title">Doba platnosti</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Časový interval po ktorom sa heslo vymaže z pamäte</string>
   <string name="preferences__notifications">Notifikácie</string>
   <string name="preferences__led_color">LED farba</string>
   <string name="preferences__led_color_unknown">Neznáme</string>
@@ -576,10 +550,8 @@ zlyhalo.
   <string name="preferences__dark_theme">Tmavá</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Téma</string>
-  <string name="preferences__theme_summary">Téma %s</string>
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
-  <string name="preferences__language_summary">Jazyk %s</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
@@ -646,8 +618,6 @@ zlyhalo.
   <string name="conversation_group_options__broadcast">Vysielanie</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Porovnaj</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Nascannuj pre porovnanie</string>
-  <string name="key_scanning__menu_scan_to_compare">Zoscannuj pre porovnanie</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nová správa</string>
   <string name="text_secure_normal__menu_new_group">Nová skupina</string>
@@ -655,16 +625,14 @@ zlyhalo.
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
   <!--reminder_header-->
-  <string name="reminder_header_expired_build">Platnosť aplikácie Signal vypršala!</string>
-  <string name="reminder_header_expired_build_details">Nie je možné ďalej úspešne odosielať správy. Prosím, aktualizujte na najnovšiu verziu.</string>
   <string name="reminder_header_sms_default_text">Ťuknutím nastavte Signal ako Vašu predvolenú SMS aplikáciu.</string>
-  <string name="reminder_header_sms_import_text">Dotykom sem môžete skopírovať SMS správy z Vašeho telefónu do zašifrovanej databázy.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
   <string name="MediaPreviewActivity_cant_display">Nepodarilo sa zobraziť náhľad pre tento obrázok</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ súboru</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->

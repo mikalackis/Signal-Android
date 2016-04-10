@@ -11,13 +11,14 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.textsecure.internal.push.PushServiceSocket;
-import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.internal.push.PushServiceSocket;
+import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,7 +64,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         database.updateAvatar(groupId, avatar);
       }
-    } catch (ExecutionException | NonSuccessfulResponseCodeException e) {
+    } catch (BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)

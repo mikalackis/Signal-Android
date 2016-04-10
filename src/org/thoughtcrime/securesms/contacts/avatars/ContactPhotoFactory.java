@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
@@ -37,8 +38,18 @@ public class ContactPhotoFactory {
   }
 
   public static ContactPhoto getContactPhoto(Context context, Uri uri, String name) {
+    int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    return getContactPhoto(context, uri, name, targetSize);
+  }
+
+  public static ContactPhoto getContactPhoto(@NonNull  Context context,
+                                             @Nullable Uri uri,
+                                             @Nullable String name,
+                                             int targetSize)
+  {
+    if (uri == null) return getDefaultContactPhoto(name);
+
     try {
-      int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
       Bitmap bitmap = Glide.with(context)
                            .load(new ContactPhotoUri(uri)).asBitmap()
                            .centerCrop().into(targetSize, targetSize).get();

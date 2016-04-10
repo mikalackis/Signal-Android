@@ -35,10 +35,10 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,7 +147,7 @@ public class ContactsDatabase {
                                        ContactsContract.CommonDataKinds.Phone.TYPE,
                                        ContactsContract.CommonDataKinds.Phone.LABEL};
 
-    String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE NOCASE ASC";
+    String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>() {{
       put(ID_COLUMN, ContactsContract.CommonDataKinds.Phone._ID);
@@ -181,7 +181,7 @@ public class ContactsDatabase {
                                         ContactsContract.Contacts.DISPLAY_NAME,
                                         ContactsContract.Data.DATA1};
 
-    String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE NOCASE ASC";
+    String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
 
     Map<String, String> projectionMap = new HashMap<String, String>(){{
       put(ID_COLUMN, ContactsContract.Data._ID);

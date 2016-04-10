@@ -16,24 +16,28 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class SmsReceiveJob extends ContextJob {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String TAG = SmsReceiveJob.class.getSimpleName();
 
   private final Object[] pdus;
+  private final int      subscriptionId;
 
-  public SmsReceiveJob(Context context, Object[] pdus) {
+  public SmsReceiveJob(Context context, Object[] pdus, int subscriptionId) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withWakeLock(true)
                                 .create());
 
-    this.pdus = pdus;
+    this.pdus           = pdus;
+    this.subscriptionId = subscriptionId;
   }
 
   @Override
@@ -41,7 +45,7 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public void onRun() {
-    Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus);
+    Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus, subscriptionId);
     MasterSecret                  masterSecret = KeyCachingService.getMasterSecret(context);
 
     MasterSecretUnion masterSecretUnion;
@@ -95,11 +99,11 @@ public class SmsReceiveJob extends ContextJob {
     return messageAndThreadId;
   }
 
-  private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus) {
+  private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus, int subscriptionId) {
     List<IncomingTextMessage> messages = new LinkedList<>();
 
     for (Object pdu : pdus) {
-      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdu)));
+      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdu), subscriptionId));
     }
 
     if (messages.isEmpty()) {

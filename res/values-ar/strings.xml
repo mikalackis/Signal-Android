@@ -8,12 +8,26 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s رسائل في المحادثة</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="zero">%d رسائل في المحادثة</item>
+    <item quantity="one">رسالة في المحادثة</item>
+    <item quantity="two">%d رسائل في المحادثة</item>
+    <item quantity="few">%d رسائل في المحادثة</item>
+    <item quantity="many">%d رسائل في المحادثة</item>
+    <item quantity="other">%d رسائل في المحادثة</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="zero">تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
+    <item quantity="one">سوف يتم تقليم كل المحادثات إلى أحدث رسالة.</item>
+    <item quantity="two">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
+    <item quantity="few">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
+    <item quantity="many">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
+    <item quantity="other">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
-  <string name="ApplicationPreferencesActivity_disable_lock_screen">
-إزالة قفل الشاشة للرسائل؟</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">سوف يتم إلغاء قفل سييجنال وإشعارات الرسائل دائماً</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات سيجنال...</string>
@@ -29,12 +43,22 @@
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل نصية %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">العبارة السرية %1$s، تأمين الشاشة %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <string name="AppProtectionPreferenceFragment_minutes">%d دقائق</string>
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="zero">%d دقيقة</item>
+    <item quantity="one">دقيقة</item>
+    <item quantity="two">%d دقيقتين</item>
+    <item quantity="few">%d دقائق</item>
+    <item quantity="many">%d دقيقة</item>
+    <item quantity="other">%d دقيقة</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(صورة)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوت)</string>
   <string name="DraftDatabase_Draft_video_snippet">(فيديو)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(الموقع)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -63,7 +87,7 @@
   <string name="ConversationItem_view_secure_media_question">عرض الوسائط المشفرة؟</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">تم حفظ هذا المحتوى بقاعدة بيانات مشفرة، يتطلب عرضها فى تطبيق خارجى فك تشفيرها و تخزينها مؤقتاً بالذاكرة، هل ترغب فى الاستمرار؟</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">خطأ. تم استقبال رسالة تبادل مفاتيح غير صالحة.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">تم استلام رسالة تبادل المفاتيح، أنقر للمتابعة.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_click_for_details">إضغط للتفاصيل</string>
   <string name="ConversationItem_click_to_approve_unencrypted">أنقر من أجل استعاضة غير آمنة</string>
@@ -71,6 +95,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسالها غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
+  <string name="ConversationItem_from_s">من %s</string>
+  <string name="ConversationItem_to_s">إلى %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
@@ -89,8 +115,14 @@
   <string name="ConversationActivity_group_members">أعضاء المجموعة</string>
   <string name="ConversationActivity_group_conversation">دردشة جماعية</string>
   <string name="ConversationActivity_unnamed_group">مجموعة غير مسماه</string>
-  <string name="ConversationActivity_d_recipients_in_group">أعضاء %d </string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">عضو 1</string>
+  <plurals name="ConversationActivity_d_recipients_in_group">
+    <item quantity="zero">%d عضو</item>
+    <item quantity="one">عضو</item>
+    <item quantity="two">%d عضوين</item>
+    <item quantity="few">%d عضو</item>
+    <item quantity="many">%d عضو</item>
+    <item quantity="other">%d عضو</item>
+  </plurals>
   <string name="ConversationActivity_saved_draft">مسودة محفوظة</string>
   <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
   <string name="ConversationActivity_calls_not_supported">المكالمات غير مدعمة</string>
@@ -134,12 +166,7 @@
     <item quantity="other">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
-  <string name="ConversationFragment_saving_this_media_to_storage_warning">حفظ الملف في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطأ أثناء حفظ المرفق إلى الذاكرة!</string>
-  <string name="ConversationFragment_success_exclamation">تم بنجاح!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
-  <string name="ConversationFragment_saving_attachment">حفظ المرفق</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">جارٍ حفظ المرفق في الذاكرة...</string>
   <string name="ConversationFragment_pending">معلق...</string>
   <string name="ConversationFragment_push">بيانات (سيجنال)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
@@ -166,16 +193,28 @@
     <item quantity="other">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">حذف المحادثات المختاره </string>
-  <string name="ConversationListFragment_archived_conversations">أرشيف المحادثات</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف المحادثات المختارة...</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="zero">تم نقل %d رسالة إلى الأرشيف</item>
+    <item quantity="one">تم نقل رسالة إلى الأرشيف</item>
+    <item quantity="two">تم نقل %d رسالة إلى الأرشيف</item>
+    <item quantity="few">تم نقل %d رسالة إلى الأرشيف</item>
+    <item quantity="many">تم نقل %d رسالة إلى الأرشيف</item>
+    <item quantity="other">تم نقل %d رسالة إلى الأرشيف</item>
+  </plurals>
   <string name="ConversationListFragment_undo">تراجع</string>
-  <string name="ConversationListFragment_moved_conversation_to_inbox">نقل المحادثة إلى صندوق الوارد</string>
-  <string name="ConversationListFragment_archived_conversation">أرشيف المحادثة</string>
-  <string name="ConversationListFragment_moved_conversations_to_inbox">نقل المحادثات إلى صندوق الوارد</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="zero">تم نقل %d رسالة إلى الوارد</item>
+    <item quantity="one">تم نقل رسالة إلى الوارد</item>
+    <item quantity="two">تم نقل %d رسالة إلى الوارد</item>
+    <item quantity="few">تم نقل %d رسالة إلى الوارد</item>
+    <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
+    <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">المحادثات المؤرشفة (%d)</string>
+  <string name="ConversationListItemAction_archived_conversations_d">أرشيف المحادثات (%d)</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -214,7 +253,6 @@
   <string name="ExportFragment_error_unable_to_write_to_storage">خطأ. تعذر الكتابة على بطاقة الذاكرة!</string>
   <string name="ExportFragment_error_while_writing_to_storage">e
 خطأ أثناء الكتابة على بطاقة الذاكرة.</string>
-  <string name="ExportFragment_success">تم بنجاح!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال سيجنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سيجنال لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات سيجنال. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
@@ -335,14 +373,14 @@
 \n• أرسل رسائل باسمك</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
   <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">تم التصديق على الجهاز.</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">تمت المصادقة على الجهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك أجهزة عديدة مقترنة حاليا. حاول إلغاء إقران بعضهم...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">ربط جهاز سيجنال؟</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">أنت تحاول ربط الجهاز باستخدام ماسح ضوئي كوسيط خارجي 3. للأمان، الرجاء قم بعمليه مسح الرمز من خلال جهاز السيجنال</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">ربط سيجنال بجهاز؟</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط سيجنال باستخدام ماسح ضوئي خارجي. رجاء مسح الكود مرة أخرى باستخدام الخاصية المدمجة في سيجنال من أجل حمايتك.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة سيجنال</string>
@@ -387,7 +425,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية مشفرة!</string>
   <string name="RedPhone_got_it">عُلم</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_signal">تواصل مع سيجنال</string>
+  <string name="RegistrationActivity_connect_with_signal">التواصل بواسطة سيجنال</string>
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">يجب عليك تحديد
@@ -436,8 +474,7 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">تم استلام رسالة تبادل مفاتيح تالفة.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-تم استلام رسالة بمفتاح هوية غير معلوم. أنقر للمتابعة والإظهار.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_tap_to_process"> تم استلام رسالة بمفتاح هوية غير معلوم. أنقر للمتابعة والإظهار.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">تم استلام تحديث ولكن معلومات الهوية مجهولة. أنقر للتحقق من الهوية.</string>
   <string name="SmsMessageRecord_secure_session_reset">إعادة ضبط جلسة آمنة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
@@ -454,8 +491,6 @@
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">لا يوجد لدى الطرف الاخر مفتاح تعريفي.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">لا يوجد لدى الطرف الاخر مفتاح تعريفي!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">قم بالمسح الضوئي لمفتاحهم للمقارنة</string>
-  <string name="VerifyIdentityActivity_get_your_key_scanned">قم بالمسح الضوئي لبصمة مفتاحي</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق! تأكد من بصمة المفتاح بحذر.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">مفتاحهم صحيح. يجب أيضاً أن تقوم بالتحقق من مفتاحك لديهم أيضاً.</string>
@@ -463,8 +498,6 @@
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">لا يوجد لديك مفتاح هوية!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">لا يوجد لديك مفتاح هوية.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">قم بالمسح الضوئي للمقارنة</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">قم بالمسح الضوئي للمقارنة</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">المفتاح الذي تم مسحه ضوئياً متطابق!</string>
@@ -527,6 +560,7 @@
   <string name="attachment_type_selector__video">فيديو</string>
   <string name="attachment_type_selector__contact">جهة اتصال</string>
   <string name="attachment_type_selector__camera">كاميرا</string>
+  <string name="attachment_type_selector__location">الموقع</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة</string>
@@ -589,7 +623,7 @@
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">استمر</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجلات التصحيح بدلا من ذلك.</string>
+  <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
   <string name="log_submit_activity__submitting">إرسال</string>
   <string name="log_submit_activity__posting_logs">جاري نشر السجلات إلى Gist...</string>
@@ -639,7 +673,7 @@
   <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب سيجنال إعدادات خدمة الوسائط المتعددة من أجل تسليم رسائل الوسائط المتعددة والمجموعات عبر شبكة الجوال. في بعض الأحوال لا تتاح هذه المعلومات مع الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام  بهذه الخطوة مرة واحدة.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام بهذه الخطوة مرة واحدة.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">جهة الاتصال محظورة</string>
   <!--recipient_preferences-->
@@ -728,13 +762,13 @@
   <string name="AndroidManifest__public_identity_key">مفتاح الهوية العلني</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
   <string name="AndroidManifest__verify_identity">تحقق من الهوية</string>
-  <string name="AndroidManifest__log_submit">أرسل سجلات التصحيح</string>
+  <string name="AndroidManifest__log_submit">أرسل سجل التشغيل.</string>
+  <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
-  <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المقترنة</string>
   <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
-  <string name="AndroidManifest_conversations_archive">أرشيف المحادثات</string>
+  <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد / تصدير</string>
   <string name="arrays__your_identity_key">متفاح الهوية الخاص بك</string>
@@ -756,12 +790,12 @@
   <string name="arrays__video">فيديو</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="zero">%d صفر</item>
+    <item quantity="zero">%d ساعة</item>
     <item quantity="one">%d ساعة</item>
     <item quantity="two">%d ساعتين</item>
     <item quantity="few">%d ساعات</item>
     <item quantity="many">%d ساعة</item>
-    <item quantity="other">%d أخرى</item>
+    <item quantity="other">%d ساعة</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
@@ -781,18 +815,16 @@
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_your_passphrase">غير العبارة السرية</string>
   <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
-  <string name="preferences__passphrase_summary">عبارة سرية %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">تفعيل قفل الشاشة للرسائل</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">أقفل سيجال وإخطارات الرسائل بعبارة سرية</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
-  <string name="preferences__screen_security_summary">تأمين الشاشة %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">منع لقطات الشاشة داخل التطبيق</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">انسى العبارة السرية من ذاكرة الجهاز بعد فترة</string>
-  <string name="preferences__timeout_passphrase">نسيان العبارة السرية بعد فترة</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">تحديد مهلة العبارة السرية</string>
-  <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">غلق سيجنال تلقائيا بعد مدة زمنية محددة</string>
+  <string name="preferences__inactivity_timeout_passphrase">تحديد مدة تذكر العبارة السرية</string>
+  <string name="preferences__inactivity_timeout_interval">مدة الصلاحية</string>
   <string name="preferences__notifications">الإشعارات</string>
   <string name="preferences__enable_message_notifications">تفعيل إشعارات الرسالة</string>
+  <string name="preferences__new_contacts_notifications">الإخطار بجهات اتصال جديدة</string>
+  <string name="preferences__show_a_notification_for_new_signal_contacts">أظهر إخطار لمستخدمي سيجنال جدد</string>
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
   <string name="preferences__led_color_unknown">مجهول</string>
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
@@ -803,6 +835,7 @@
   <string name="preferences__sound">صوت</string>
   <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__silent">صامت</string>
+  <string name="preferences__in_conversation_notifications">تنويهات أثناء المحادثة</string>
   <string name="preferences__play_inthread_notifications">تفعيل تنبيه صوتي أثناء مطالعة محادثة نشطة</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
@@ -840,18 +873,18 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير التسليم</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة قصيرة ترسلها</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف الرسائل القديمة بالمحادثة عند تجاوز أقصى طول محدد.</string>
   <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string>
   <string name="preferences__chats">المحادثات والوسائط</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
-  <string name="preferences__devices">الأجهزة</string>
+  <string name="preferences__trim_all_conversations_now">تقليم كل المحادثات الآن</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">فحص وتقليم كل المحادثات وفق الحد الأقصى</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
   <string name="preferences__appearance">المظهر</string>
   <string name="preferences__theme">المظهر</string>
-  <string name="preferences__theme_summary">المظهر %s</string>
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
-  <string name="preferences__language_summary">اللغة %s</string>
   <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
   <string name="preferences__free_private_messages_and_calls"> رسائل ومكالمات مجانية وآمنة مع مستخدمي سيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
@@ -899,7 +932,7 @@
   <string name="conversation_list_batch__menu_delete_selected">احذف المختار</string>
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">اختيار الغير مأرشف</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">اختيار غير المؤرشف</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_list_item_view-->
@@ -934,8 +967,6 @@
   <string name="conversation_group_options__broadcast">بث</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">قارن</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">قم بالمسح الضوئي للمقارنة</string>
-  <string name="key_scanning__menu_scan_to_compare">قم بالمسح الضوئي للمقارنة</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">رسالة جديدة</string>
   <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
@@ -945,14 +976,24 @@
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
   <string name="text_secure_normal__help">مساعدة</string>
   <!--reminder_header-->
+  <string name="reminder_header_outdated_build">لقد انتهت صلاحية هذه الإصدارة من سيجنال.</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="zero">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+    <item quantity="one">تنتهي صلاحية نسخة سيجنال المستخدمة خلال يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+    <item quantity="two">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+    <item quantity="few">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+    <item quantity="many">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+    <item quantity="other">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">تنتهي اليوم صلاحية إصدارة سيجنال. ألمس لتحديث التطبيق.</string>
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
-  <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>
+  <string name="reminder_header_expired_build_details">لن ترسل الرسائل بنجاح بعد الآن. ألمس لتحديث التطبيق.</string>
   <string name="reminder_header_expired_build_button">تحديث</string>
   <string name="reminder_header_sms_default_title">اجعله تطبيق المراسلة الافتراضي</string>
   <string name="reminder_header_sms_default_text">المس لجعل سيجنال التطبيق الافتراضي للرسائل.</string>
   <string name="reminder_header_sms_default_button">تعيين</string>
   <string name="reminder_header_sms_import_title">استيراد رسائل النظام</string>
-  <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
+  <string name="reminder_header_sms_import_text">أنقر لنسخ الرسائل من على الهاتف إلى قاعدة بيانات سيجنال المشفرة.</string>
   <string name="reminder_header_sms_import_button">استيراد</string>
   <string name="reminder_header_push_title">تفعيل رسائل ومكالمات سيجنال</string>
   <string name="reminder_header_push_text">ترقية التطبيق من أجل تواصل أفضل.</string>
@@ -970,6 +1011,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
+  <!--media_overview-->
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">معاينه الصوره</string>
   <!--new_conversation_activity-->

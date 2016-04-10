@@ -29,11 +29,12 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.whispersystems.libaxolotl.AxolotlAddress;
-import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.libaxolotl.state.SessionRecord;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
+import org.thoughtcrime.securesms.util.Hex;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 /**
  * Activity for verifying identity keys.
@@ -75,14 +76,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
+    localIdentityFingerprint.setText(Hex.toString(IdentityKeyUtil.getIdentityKey(this).serialize()));
 
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
 
     if (identityKey == null) {
       remoteIdentityFingerprint.setText(R.string.VerifyIdentityActivity_recipient_has_no_identity_key);
     } else {
-      remoteIdentityFingerprint.setText(identityKey.getFingerprint());
+      remoteIdentityFingerprint.setText(Hex.toString(identityKey.serialize()));
     }
   }
 
@@ -112,12 +113,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected String getScanString() {
-    return getString(R.string.VerifyIdentityActivity_scan_their_key_to_compare);
+    return getString(R.string.VerifyIdentityActivity_scan_contacts_qr_code);
   }
 
   @Override
   protected String getDisplayString() {
-    return getString(R.string.VerifyIdentityActivity_get_your_key_scanned);
+    return getString(R.string.VerifyIdentityActivity_display_your_qr_code);
   }
 
   @Override
@@ -157,9 +158,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return identityKeyParcelable.get();
     }
 
-    SessionStore   sessionStore   = new TextSecureSessionStore(this, masterSecret);
-    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
-    SessionRecord  record         = sessionStore.loadSession(axolotlAddress);
+    SessionStore          sessionStore   = new TextSecureSessionStore(this, masterSecret);
+    SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(recipient.getNumber(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+    SessionRecord         record         = sessionStore.loadSession(axolotlAddress);
 
     if (record == null) {
       return null;

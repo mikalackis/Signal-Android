@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.RedPhoneCommunicationModule;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
+import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.MediaNetworkRequirementProvider;
@@ -37,8 +37,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
-import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
-import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
+import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
 
 import dagger.ObjectGraph;
 
@@ -70,6 +70,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     initializeDependencyInjection();
     initializeJobManager();
     initializeGcmCheck();
+    initializeSignedPreKeyCheck();
   }
 
   @Override
@@ -98,7 +99,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeLogging() {
-    AxolotlLoggerProvider.setProvider(new AndroidAxolotlLogger());
+    SignalProtocolLoggerProvider.setProvider(new AndroidSignalProtocolLogger());
   }
 
   private void initializeJobManager() {
@@ -129,6 +130,12 @@ public class ApplicationContext extends Application implements DependencyInjecto
         TextSecurePreferences.getGcmRegistrationId(this) == null)
     {
       this.jobManager.add(new GcmRefreshJob(this));
+    }
+  }
+
+  private void initializeSignedPreKeyCheck() {
+    if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
+      jobManager.add(new CreateSignedPreKeyJob(this));
     }
   }
 
